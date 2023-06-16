@@ -1,0 +1,3 @@
+SELECT 
+ROUND(AVG(length),2) AS AVG_LENGTH
+FROM film

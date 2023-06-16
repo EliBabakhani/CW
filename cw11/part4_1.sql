@@ -1,0 +1,3 @@
+SELECT 
+ROUND(MAX(length),2) AS MAX_LENGTH
+FROM film
