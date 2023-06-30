@@ -5,20 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .blue{color: blue;
+        /* solution1 */
+        /* .blue{color: blue;
 
         }
         #green{color: green;}
-        #red{color: red;}
+        #red{color: red;} */
+        /* solution2 */
+        /* p:first-of-type {color: red;}
+        p:nth-of-type(2), p:nth-of-type(4){color: aqua;}
+        p:last-of-type{color: yellow;} */
+        /* body:nth-child(even){color: blue;
+
+        } */
+        /* solution3 */
+        body p:first-child{color: red;}
+        body p:nth-child(even){color: blueviolet;} 
+        p:last-child{color: green;} 
 
     </style>
 </head>
 <body>
-    <p id="red">Hi</p>
-    <p class="blue">  there  </p>
+    <p >Hi</p>
+    <p >  there  </p>
     <p>Eli</p>
-    <p class="blue">Babakhani</p>
-    <p id="green">I'm here</p>
+    <p>Babakhani</p>
+    <p>I'm here</p>
     
 </body>
 </html>
