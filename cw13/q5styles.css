@@ -1,0 +1,56 @@
+.bold {
+    font-weight: bold;
+}
+.gray-opa {
+    color:gray; opacity:0.5;
+}
+.gray-opa7 {
+    color:gray; opacity:0.7;
+}
+
+.icons {
+    height: 20px;
+    width: 20px;
+    margin-right: 5px;
+}
+
+.post-icons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.nasaimg {
+    height: 100%;
+    width: 100%;
+}
+
+.user-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.dp {
+    height: 50px;
+    width: 50px;
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-container {
+    width: 500px;
+    height: 500px;
+    border: 1px solid #515151;
+    border-radius: 5px;
+    padding: 4px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+   
+
+}
