@@ -6,7 +6,8 @@ def post_list(request):
     return render(request, 'BlogApp/post_list.html', {'post': all_post})
 
 def post_details(request, pk):
-    post=models.Post.objects.get(pk=post.id)
-    return render(request, 'BlogApp/post_details', post)
+    post=models.Post.objects.get(pk=pk)
+    return render(request, 'BlogApp/post_details.html', {'post': post})
+
 def home(request):
-    
+    pass
