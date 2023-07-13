@@ -1,5 +1,8 @@
-{% extends'base.html'%}
-
-{% for x in all_post %}
-    {{content.title}}
-{% endfor %}
+{% extends 'base.html' %}
+{% block content %} 
+ <ul>
+    {% for p in post %}
+        <li>{{p.title}}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
