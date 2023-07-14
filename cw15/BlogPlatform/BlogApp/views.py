@@ -10,4 +10,8 @@ def post_details(request, pk):
     return render(request, 'BlogApp/post_details.html', {'post': post})
 
 def home(request):
-    pass
+    return render(request, 'BlogApp/home.html')
+
+def author_list(request):
+    all_author=models.Author.objects.all()
+    return render(request, 'BlogApp/author_list.html', {'author': all_author})
