@@ -2,11 +2,18 @@
 {% block content %} 
  <ul>
     
-    <li><h1>{{post.title}}</h1>
-        <h3>{{post.author}}</h3>
-        <p>{{post.content}}</p>
+    <h1>Tittl: {{post.title}}</h1>
+        <h3><img src="{{ author.photo.url }}" alt="profile picture" width="60" height="60"><h2>{{author.name}}</h2>
+            Author: {{post.author}}</h3>
+        <p> Content: {{post.content}}</p>
+        <p>Comments:</p>
+        {% for comment in post.comment_set.all %}
+        <a>{{comment.author}}
+        <br>{{comment.content}} <br> <br>
+        </a>
+        {% endfor %}
 
-    </li>
+    
     
 </ul>
 {% endblock %}

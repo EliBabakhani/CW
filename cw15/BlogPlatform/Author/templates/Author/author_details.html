@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %} 
+
+    <img src="{{ author.photo.url }}" alt="profile picture" width="60" height="60"><h2>{{author.name}}</h2>
+
+
+    <a>{{author.bio}}</a>
+    {% for post in author.post_set.all %}
+    <a href="{% url 'my' post.id %}">post</a>
+    {% endfor %}
+
+
+{% endblock %}

@@ -2,7 +2,7 @@
 {% block content %} 
  <ul>
     {% for p in post %}
-        <li>{{p.title}}</li>
+        <a href="{% url 'my' p.id %}">{{p.title}} <br></a>
     {% endfor %}
 </ul>
 {% endblock %}
