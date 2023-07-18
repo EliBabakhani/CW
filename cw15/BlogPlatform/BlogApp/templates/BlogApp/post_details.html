@@ -3,11 +3,11 @@
  <ul>
     
     <h1>Tittl: {{post.title}}</h1>
-        <h3><img src="{{ author.photo.url }}" alt="profile picture" width="60" height="60"><h2>{{author.name}}</h2>
+        <h3>{{author.name}}
             Author: {{post.author}}</h3>
         <p> Content: {{post.content}}</p>
         <p>Comments:</p>
-        {% for comment in post.comment_set.all %}
+        {% for comment in comments %}
         <a>{{comment.author}}
         <br>{{comment.content}} <br> <br>
         </a>

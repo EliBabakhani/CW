@@ -7,7 +7,8 @@ def post_list(request):
 
 def post_details(request, pk):
     post=Post.objects.get(pk=pk)
-    return render(request, 'BlogApp/post_details.html', {'post': post})
+    comments=Comment.objects.filter(post=post.id)
+    return render(request, 'BlogApp/post_details.html', {'post': post, 'comments': comments})
 
 def home(request):
     return render(request, 'BlogApp/home.html')
