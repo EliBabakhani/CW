@@ -1,13 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
-
-class Users(models.Model):
-    name=models.CharField(max_length=100)
-    image=models.ImageField(upload_to='images', default='images/unknown.png')
-
-    def __str__(self) -> str:
-        return self.name
     
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, username, first_name, last_name, photo, password=None):
@@ -32,7 +25,7 @@ class CustomUser(AbstractBaseUser):
     username = models.CharField(max_length=30, unique=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    photo = models.ImageField(upload_to='profile_photos/', blank=True, null=True)
+    photo = models.ImageField(upload_to='images', blank=True, null=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
