@@ -1,11 +1,11 @@
 from django.db import models
-from User.models import Users
+from User.models import *
 
 class Task(models.Model):
     title=models.CharField(max_length=100)
     description=models.TextField()
     due_date=models.DateTimeField()
-    user=models.ForeignKey(Users,on_delete=models.CASCADE)
+    user=models.ForeignKey(CustomUser,on_delete=models.CASCADE)
     tags=models.ForeignKey('Tag',on_delete=models.CASCADE)
     status_field=models.CharField(max_length=50)
 
