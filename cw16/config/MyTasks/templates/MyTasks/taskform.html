@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block link %}
+
+<link rel="stylesheet" href="{% static 'MyTasks/taskstyle.css' %}">
+
+{% endblock %}
+{% block content %}
+    <div class="form">
+        <h3 >Create Task</h3>
+        <form method="post" novalidate>
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="Create">
+        </form>
+    </div>
+
+{% endblock %}

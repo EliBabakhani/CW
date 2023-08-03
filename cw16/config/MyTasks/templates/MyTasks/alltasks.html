@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<div class="jumbotron jumbotron-fluid" >
+    <div class="container">
+      <h1 class="display-4">See All Tasks</h1>
+    </div>
+  </div>
+
+{% endblock %}
+{% block link %}
+
+<link rel="stylesheet" href="{% static 'MyTasks/taskstyle.css' %}">
+
+{% endblock %}
+
+{% block content %}
+
+  
+    <div class="flex-container" >
+      {% for task in all_tasks %}
+        <div class="card">
+          <h5 class="card-title"><a href="#">{{task.title}}</a></h5>
+          <p class="card-text">{{task.user}}</p>
+          <a class="card-link" href="{% url 'details' task.id %}">more...</a>
+        </div>
+      {% endfor %}
+      
+
+    </div>
+    
+  
+
+
+{% endblock %}
+<!-- {% url 'taskbytitle' task.title %} -->
+<!-- {% url 'taskbytitle' task.title %} -->

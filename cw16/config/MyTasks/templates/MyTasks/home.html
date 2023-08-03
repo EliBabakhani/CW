@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block title %}
+
+
+{% endblock %}
+{% block link %}
+
+<link rel="stylesheet" href="{% static 'MyTasks/homestyle.css' %}">
+
+{% endblock %}
+
+{% block content %}
+<!-- <div class="custom-card bg-dark text-black " >
+  <img class="card-img" src="{% static 'image/giphy1.gif' %}" alt="Card image">
+  <div class="card-img-overlay">
+    <h2 class="card-title">Welcome to your Task Management System</h2>
+    <p class="card-text">Last updated 3 mins ago</p>
+  </div>
+</div> -->
+
+
+<div class="jumbotron ">
+  <img src="{% static 'image/giphy1.gif' %}" alt="pic" style="width:150%;height: 350px;">
+  <h1>Welcome to your Task Management System</h1>
+</div>
+<div class="flex-container" >
+    {% for task in tasks %}
+      <div class="card">
+        <h5 class="card-title">{{task.title}}</h5>
+        <p class="card-text">{{task.due_date}}</p>
+        <p class="card-text">{{task.user}}</p>
+        <a class="card-link" href="{% url 'details' task.id %}">more...</a>
+      </div>
+    {% endfor %}  
+</div>
+
+
+{% endblock %}
