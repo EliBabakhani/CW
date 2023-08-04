@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<div class="jumbotron jumbotron-fluid" >
+    <div class="container">
+      <h1 class="display-4">User login</h1>
+    </div>
+  </div>
+
+{% endblock %}
+{% block link %}
+
+<link rel="stylesheet" href="{% static 'MyTasks/taskstyle.css' %}">
+
+{% endblock %}
+
+{% block content %}
+
+  
+    
+        <form action="{%url 'login' %}" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="login">
+
+        </form>
+
+    
+  
+
+
+{% endblock %}
+<!-- {% url 'taskbytitle' task.title %} -->
+<!-- {% url 'taskbytitle' task.title %} -->
+<!-- {% url 'usertasks' user.id %} -->
