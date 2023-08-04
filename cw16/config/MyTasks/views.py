@@ -11,19 +11,19 @@ from django.contrib import messages
 def home(request):
     tasks=Task.objects.order_by('due_date')
 
-    return render(request, 'home.html', {'tasks':tasks})
+    return render(request, 'MyTasks/home.html', {'tasks':tasks})
 
 def see_all_tasks(request):
     all_tasks=get_list_or_404(Task)
-    return render(request, 'alltasks.html', {'all_tasks': all_tasks})
+    return render(request, 'MyTasks/alltasks.html', {'all_tasks': all_tasks})
 
 def see_user_tasks(request, user):
     all_user_tasks=get_list_or_404(Task, user=user)
-    return render(request, 'user_tasks.html', {'all_user_tasks':all_user_tasks})
+    return render(request, 'MyTasks/user_tasks.html', {'all_user_tasks':all_user_tasks})
 
 def task_details(request, pk):
     task=get_object_or_404(Task,id=pk)
-    return render(request, 'details.html', {'task':task})
+    return render(request, 'MyTasks/details.html', {'task':task})
 
 def update_task(request,pk):
     task=get_object_or_404(Task,id=pk)
@@ -32,21 +32,21 @@ def update_task(request,pk):
         if form.is_valid():
             form.save()
             messages.success(request,'Content has been chaged','success')
-            return redirect('details.html',id)
+            return redirect('MyTasks/details.html',id)
     else:
         task=MyTaskForm(request, instance=task)
         context={'task':task}
-        return render(request, 'update.html', context)
+        return render(request, 'MyTasks/update.html', context)
 
 def search(request):
-    return render(request, 'search.html')
+    return render(request, 'MyTasks/search.html')
 
 
 def search_result(request):
     if request.method=='POST':
         word=request.POST.get('search')
         task=Task.objects.filter(Q(title__icontains=word) & Q(description__icontains=word))
-    return render(request, 'result.html', {'task':task})
+    return render(request, 'MyTasks/result.html', {'task':task})
 
 
 
@@ -59,5 +59,5 @@ def create_task(request):
                                 user=cd['user'], tags=cd['tags'], status_field=cd['status_field'])
     else:
         form=TaskForm()
-    return render(request, 'taskform.html', {'form': form})
+    return render(request, 'MyTasks/taskform.html', {'form': form})
 
