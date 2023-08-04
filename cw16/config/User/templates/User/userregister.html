@@ -4,7 +4,7 @@
 {% block title %}
 <div class="jumbotron jumbotron-fluid" >
     <div class="container">
-      <h1 class="display-4">User login</h1>
+      <h1 class="display-4">User registration</h1>
     </div>
   </div>
 
@@ -17,14 +17,14 @@
 
 {% block content %}
 
-  
-    
-        <form action="{%url 'register' %}" method="post">
-            {% csrf_token %}
-            {{form.as_p}}
-            <input type="submit" value="login">
 
-        </form>
+
+    <form action="{%url 'userregister' %}" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="register">
+
+    </form>
 
     
   

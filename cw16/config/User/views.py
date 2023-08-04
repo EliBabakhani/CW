@@ -34,9 +34,13 @@ def register(request):
     if request.method == "POST":
         form = UserRegisterForm(request.POST)
         if form.is_valid():
-            cd = form.cleaned_data
-            user = CustomUser(cd['username'])
+            # cd = form.cleaned_data
+            # user = CustomUser(cd['username'], cd['email'], cd['password'])
+            form.save()
+            return redirect('home')
+
+
     else:
         form = UserRegisterForm()
     context = {'form': form}
-    return render(request, 'User/register.html', context)
+    return render(request, 'User/userregister.html', context)
