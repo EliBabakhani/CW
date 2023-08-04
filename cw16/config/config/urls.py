@@ -26,7 +26,6 @@ urlpatterns = [
     path('',include('MyTasks.urls')),
     path('User/',include('User.urls')),
     path('__debug__/', include(debug_toolbar.urls)),
-    path('accounts/', include('accounts.urls'))
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
