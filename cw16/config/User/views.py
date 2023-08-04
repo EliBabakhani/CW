@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from .models import CustomUser
 from django.shortcuts import get_list_or_404
-from .forms import UserLogInForm
+from .forms import UserLogInForm, UserRegisterForm
 from . auth import *
 from django.contrib.auth import login,authenticate
 
@@ -27,5 +27,16 @@ def user_login(request):
         form=UserLogInForm()
     context={'form':form}
     return render(request,'User/login.html',context )
-            
+
+
+def register(request):
+    if request.method=="POST":
+        form=UserRegisterForm(request.POST)
+        if form.is_valid():
+            cd=form.cleaned_data
+            user=CustomUser(cd['username'])
+    else:
+        form=UserRegisterForm()
+    context={'form':form}
+    return render(request, 'User/register.html', context)
     
