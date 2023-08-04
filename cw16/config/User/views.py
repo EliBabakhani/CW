@@ -1,6 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import CustomUser
 from django.shortcuts import get_list_or_404
+from .forms import UserLogInForm
+from . auth import *
+from django.contrib.auth import login,authenticate
 
 def user_tasks(request):
     all_users=get_list_or_404(CustomUser)
@@ -9,10 +12,20 @@ def user_tasks(request):
 
 def user_login(request):
     if request.method=="POST":
-        cd=request.POST(CustomUser)
-        if cd.is_valid():
-            pass
+        form=UserLogInForm(request.POST)
+        if form.is_valid():
+            cd=form.cleaned_data
+            username=cd['username']
+            password=cd['password']
+            user=AuthBackend.authenticate(request,username,password)
+            if user:
+                login(request,user)
+                return redirect('home')
+            else:
+                form.add_error(None,'Data were wrong')
     else:
-        form=
+        form=UserLogInForm()
+    context={'form':form}
+    return render(request,'User/login.html',context )
             
     
