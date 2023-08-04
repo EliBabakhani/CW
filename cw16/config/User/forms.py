@@ -1,9 +1,9 @@
-from django.forms import ModelForm, CharField, PasswordInput, ValidationError, forms
+from django import forms
 from .models import CustomUser
 
 
-class UserRegisterForm(ModelForm):
-    confirm_password=CharField(widget=PasswordInput)
+class UserRegisterForm(forms.ModelForm):
+    confirm_password=forms.CharField(widget=forms.PasswordInput)
     class Meta:
         model=CustomUser
         fields=('username', 'email', 'password')
@@ -13,9 +13,9 @@ class UserRegisterForm(ModelForm):
         password = cleaned_data.get("password")
         confirm_password = cleaned_data.get("confirm_password")
         if password != confirm_password:
-            raise ValidationError("password and confirm_password does not match")
+            raise forms.ValidationError("password and confirm_password does not match")
         return cleaned_data
 
 class UserLogInForm(forms.Form):
-    username=CharField()
-    password=PasswordInput()
+    username=forms.CharField()
+    password=forms.CharField(widget=forms.PasswordInput)
