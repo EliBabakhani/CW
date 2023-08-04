@@ -2,14 +2,14 @@ from django.forms import ModelForm, CharField, PasswordInput, ValidationError
 from .models import CustomUser
 
 
-class UserForm(ModelForm):
+class UserRegisterForm(ModelForm):
     confirm_password=CharField(widget=PasswordInput)
     class Meta:
         model=CustomUser
         fields=('username', 'email', 'password')
 
     def clean(self):
-        cleaned_data = super(UserForm, self).clean()
+        cleaned_data = super(UserRegisterForm, self).clean()
         password = cleaned_data.get("password")
         confirm_password = cleaned_data.get("confirm_password")
         if password != confirm_password:
