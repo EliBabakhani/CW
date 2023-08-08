@@ -17,7 +17,7 @@ class TodoMixin:
 
 
     def get(self, request, id):
-        todo = Todo.objects.filter(id=id)
+        todo = Todo.objects.get(id=id)
         return render(request, self.template_name, {'todo': todo})
 
     def post(self, request, id):
