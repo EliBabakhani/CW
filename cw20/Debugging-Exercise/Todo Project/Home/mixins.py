@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Todo
-from .forms import TodoForm
+from .models import Todo,User
+from .forms import *
 from django.core.exceptions import PermissionDenied
 
 
@@ -27,3 +27,26 @@ class TodoMixin:
             todo.save()
             return redirect('thank_you')
         return render(request, self.template_name, {'todo': todo})
+
+
+class ProfileMixin:
+    form_class=ProfileForm
+    template_name=None
+
+    def dispatch(self, request, *args, **kwargs):
+        profile = User.objects.get(id=kwargs['id'])
+        if not profile.is_authenticated():
+            return redirect("log_in")
+        return super(ProfileMixin, self).dispatch(request, *args, **kwargs)
+
+    def get(self, request,id):
+        profile=User.objects.get(id=id)
+        return render(request, self.template_name,{"profile":profile})
+    
+    def post(self, request,id):
+        profile=User.objects.get(id=id)
+        form=self.form_class(request.POST, isinstance=profile)
+        if form.is_valid():
+            profile.save()
+            return redirect('thank_you')
+        return render(request, self.template_name, {'profile': profile})
