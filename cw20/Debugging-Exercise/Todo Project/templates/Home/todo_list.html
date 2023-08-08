@@ -2,7 +2,10 @@
 {% block title %}{% endblock %}
 
 {% block content %}
+    {% for td in todos %}
     <div class="card">
-        {{ todos }}
+        <h3><a href="{% url 'todo_detail' td.id%}">{{td.title}} <br></a></h3>
+        {{ td.description }}
     </div>
+    {% endfor %}
 {% endblock %}
