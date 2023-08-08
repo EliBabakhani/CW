@@ -13,6 +13,7 @@ class TodoMixin:
         todo = Todo.objects.get(id=kwargs['id'])
         if not todo.user == request.user:
             raise PermissionDenied
+        return super(TodoMixin, self).dispatch(request, *args, **kwargs)
 
 
     def get(self, request, id):
