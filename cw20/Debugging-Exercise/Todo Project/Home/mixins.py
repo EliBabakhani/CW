@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import Todo
 from .forms import TodoForm
+from django.core.exceptions import PermissionDenied
+
 
 
 class TodoMixin:
@@ -11,6 +13,7 @@ class TodoMixin:
         todo = Todo.objects.get(id=kwargs['id'])
         if not todo.user == request.user:
             raise PermissionDenied
+
 
     def get(self, request, id):
         todo = Todo.objects.filter(id=id)
