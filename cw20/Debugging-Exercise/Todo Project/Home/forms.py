@@ -11,3 +11,7 @@ class ProfileForm(forms.ModelForm):
     name=forms.CharField()
     email=forms.EmailField()
     image=forms.ImageField()
+
+class UpdateForm(forms.Form):
+    title=forms.CharField()
+    desciption=forms.CharField()
