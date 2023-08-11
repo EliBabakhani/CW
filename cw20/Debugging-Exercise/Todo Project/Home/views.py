@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 from .models import Todo
-from .mixins import TodoMixin
+from .mixins import *
 
 
 class IndexView(View):
@@ -18,5 +18,10 @@ class TodoListView(View):
 class TodoDetailView(TodoMixin, View):
     template_name = 'Home/todo_detail.html'
 
+
+class ProfileView(ProfileMixin,View):
+    template_get=""
+    template_post=""
+    template_name='Home/profile.html'
 
 
