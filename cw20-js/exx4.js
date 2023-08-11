@@ -1,3 +1,3 @@
-function myFunction() {
-    document.getElementById("myCheck").click();
-    }
+document.getElementById("mybutton").addEventListener('click', function () {
+    document.getElementById('mymessage').style = "display: block;"
+});
