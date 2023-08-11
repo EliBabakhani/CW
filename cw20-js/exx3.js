@@ -38,3 +38,25 @@ function main() {
 }
 main();
 
+// let username = prompt("Enter your username:")
+// setCookie("username", username, 2);
+// let htmlPart = document.getElementById("username");
+// htmlPart.textContent = getCookie("username");
+
+
+// function setCookie(name, value, days) {
+//     const expirationDate = new Date();
+//     expirationDate.setDate(expirationDate.getDate() + days);
+//     const cookieValue = encodeURIComponent(value) + (days ? `; expires=${expirationDate.toUTCString()}` : '');
+//     document.cookie = `${name}=${cookieValue}; path=/`;
+// }
+// function getCookie(name) {
+//     const cookiesArray = document.cookie.split("; ");
+//     for (const cookie of cookiesArray) {
+//         const [cookieName, cookieValue] = cookie.split("=");
+//         if (cookieName === name) {
+//             return decodeURIComponent(cookieValue);
+//         }
+//     }
+//     return null;
+// }
