@@ -3,8 +3,7 @@ from .models import CustomUser
 from django.shortcuts import get_list_or_404
 from .forms import UserLogInForm, UserRegisterForm
 from . auth import *
-from django.contrib.auth import login, authenticate
-
+from django.contrib.auth import login, authenticate,logout
 
 def user_tasks(request):
     all_users = get_list_or_404(CustomUser)
@@ -44,3 +43,8 @@ def register(request):
         form = UserRegisterForm()
     context = {'form': form}
     return render(request, 'User/userregister.html', context)
+
+def user_logout(request):
+    logout(request)
+    return redirect('home')
+

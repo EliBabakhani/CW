@@ -1,5 +1,7 @@
 from django import forms
 from .models import CustomUser
+from django.contrib.auth.hashers import make_password
+
 
 
 class UserRegisterForm(forms.ModelForm):
@@ -15,6 +17,13 @@ class UserRegisterForm(forms.ModelForm):
         if password != confirm_password:
             raise forms.ValidationError("password and confirm_password does not match")
         return cleaned_data
+    
+    def save(self, commit=True):
+        user = super(UserRegisterForm, self).save(commit=False)
+        user.password = make_password(self.cleaned_data["password"])
+        if commit:
+            user.save()
+        return user
 
 class UserLogInForm(forms.Form):
     username=forms.CharField()

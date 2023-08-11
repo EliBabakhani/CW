@@ -55,7 +55,6 @@ class TodoOwnerRequiredMixin:
 
 class ProfileMixin:
     form_class=ProfileForm
-    template_name=None
     
     def dispatch(self, request, *args, **kwargs):
         profile = User.objects.get(id=kwargs['id'])

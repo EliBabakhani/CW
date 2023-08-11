@@ -24,4 +24,5 @@ class ProfileView(ProfileMixin,View):
     template_post=""
     template_name='Home/profile.html'
 
-
+class TodoUpdateView(TodoOwnerRequiredMixin, View):
+    template_name="Home/todo_edit.html"

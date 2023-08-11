@@ -10,5 +10,6 @@ urlpatterns = [
     path('search/', views.search, name='search'),
     path('result', views.search_result, name='result'),
     path('usertasks/<slug:user>', views.see_user_tasks, name='usertasks'),
-    path('update/<int:pk>', views.update_task, name='update'),
+    path('profile/<int:id>', views.ProfileView.as_view(), name='profile'),
+    path('update/<int:id>', views.TodoUpdateView.as_view(), name='update'),
 ]
