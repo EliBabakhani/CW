@@ -13,4 +13,11 @@ class TaskForm(forms.Form):
 class MyTaskForm(forms.ModelForm):
     class Meta:
         model=Task
-        fields=('description',)
+        fields=('description','title',)
+
+
+class ProfileForm(forms.ModelForm):
+    name=forms.CharField()
+    email=forms.EmailField()
+    image=forms.ImageField()
+
