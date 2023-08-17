@@ -1,4 +1,6 @@
 from typing import Any, Dict
+from django.forms.models import BaseModelForm
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import get_list_or_404, get_object_or_404
 from .models import *
@@ -10,7 +12,7 @@ from .mixins import *
 from django.views import View
 from django.contrib.auth import authenticate,login
 from django.contrib.auth.decorators import login_required
-from django.views.generic import ListView,DetailView
+from django.views.generic import ListView,DetailView, CreateView
 
 
 
@@ -59,16 +61,24 @@ def search_result(request):
 
 
 @login_required(login_url='login')
-def create_task(request):
-    if request.method=='POST':
-        form=TaskForm(request.POST)
-        if form.is_valid():
-            cd=form.cleaned_data
-            Task.objects.create(title=cd['title'], description=cd['description'], due_date=cd['due_date']
-                                , tags=cd['tags'], status_field=cd['status_field'])
-    else:
-        form=TaskForm()
-    return render(request, 'MyTasks/taskform.html', {'form': form})
+class TaskCreateView(CreateView):
+    model=Task
+    form_class=TaskForm
+    template_name='MyTasks/taskform.html'
+    
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+# def create_task(request):
+#     if request.method=='POST':
+#         form=TaskForm(request.POST)
+#         if form.is_valid():
+#             cd=form.cleaned_data
+#             Task.objects.create(title=cd['title'], description=cd['description'], due_date=cd['due_date']
+#                                 , tags=cd['tags'], status_field=cd['status_field'])
+#     else:
+#         form=TaskForm()
+#     return render(request, 'MyTasks/taskform.html', {'form': form})
 
 
 class ProfileView(ProfileMixin,View):
