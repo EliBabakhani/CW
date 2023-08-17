@@ -60,7 +60,6 @@ def search_result(request):
     return render(request, 'MyTasks/result.html', {'task':task})
 
 
-@login_required(login_url='login')
 class TaskCreateView(CreateView):
     model=Task
     form_class=TaskForm
@@ -68,7 +67,8 @@ class TaskCreateView(CreateView):
     
     def form_valid(self, form):
         return super().form_valid(form)
-
+    
+# @login_required(login_url='login')
 # def create_task(request):
 #     if request.method=='POST':
 #         form=TaskForm(request.POST)
