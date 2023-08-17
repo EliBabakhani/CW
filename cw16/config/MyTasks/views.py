@@ -9,6 +9,7 @@ from .mixins import *
 from django.views import View
 from django.contrib.auth import authenticate,login
 from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView,DetailView
 
 
 
@@ -17,9 +18,10 @@ def home(request):
 
     return render(request, 'MyTasks/home.html', {'tasks':tasks})
 
-def see_all_tasks(request):
-    all_tasks=get_list_or_404(Task)
-    return render(request, 'MyTasks/alltasks.html', {'all_tasks': all_tasks})
+class AllTasksListView(ListView):
+    model=Task
+    template_name='MyTasks/alltasks.html'
+
 
 def see_user_tasks(request, user):
     all_user_tasks=get_list_or_404(Task, user=user)
