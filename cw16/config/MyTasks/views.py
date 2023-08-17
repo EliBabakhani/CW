@@ -1,3 +1,4 @@
+from typing import Any, Dict
 from django.shortcuts import render
 from django.shortcuts import get_list_or_404, get_object_or_404
 from .models import *
@@ -22,14 +23,16 @@ class AllTasksListView(ListView):
     model=Task
     template_name='MyTasks/alltasks.html'
 
+class TaskDetailView(DetailView):
+    model=Task
+    template_name='MyTasks/details.html'
+    context_object_name = 'task'
+    pk_url_kwarg = 'pk'
 
 def see_user_tasks(request, user):
     all_user_tasks=get_list_or_404(Task, user=user)
     return render(request, 'MyTasks/user_tasks.html', {'all_user_tasks':all_user_tasks})
 
-def task_details(request, pk):
-    task=get_object_or_404(Task,id=pk)
-    return render(request, 'MyTasks/details.html', {'task':task})
 
 # def update_task(request,pk):
 #     task=get_object_or_404(Task,id=pk)
