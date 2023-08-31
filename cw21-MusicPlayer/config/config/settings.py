@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'account.apps.AccountConfig',
     'comment.apps.CommentConfig',
     'music.apps.MusicConfig',
-    'home.appa.HomeConfig',
+    'home.apps.HomeConfig',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +58,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR/"template"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
