@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'account.apps.AccountConfig',
     'comment.apps.CommentConfig',
     'music.apps.MusicConfig',
+    'home.appa.HomeConfig',
 ]
 
 MIDDLEWARE = [
