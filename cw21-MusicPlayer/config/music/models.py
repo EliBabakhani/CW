@@ -1,5 +1,5 @@
 from django.db import models
-from account.models import Artist,User
+from account.models import Artist,Users
 
 class Genre(models.Model):
     name=models.CharField(max_length=50)
@@ -9,7 +9,7 @@ class Genre(models.Model):
 
 class Song(models.Model):
     title=models.CharField(max_length=100)
-    artist=models.ManyToManyField(Artist, on_delete=models.CASCADE)
+    artist=models.ManyToManyField(Artist)
     upload_at=models.DateTimeField(auto_now=True)
     cover_photo=models.ImageField()
     audio_file=models.FileField(upload_to="uploads/%Y/%m/")
@@ -22,8 +22,8 @@ class Song(models.Model):
 class PlayList(models.Model):
     title=models.CharField(max_length=100)
     description=models.TextField()
-    owner=models.ForeignKey(User,on_delete=models.CASCADE)
-    song=models.ManyToManyField(Song, on_delete=models.CASCADE)
+    owner=models.ForeignKey(Users,on_delete=models.CASCADE)
+    song=models.ManyToManyField(Song)
 
     def __str__(self) -> str:
         return self.title
