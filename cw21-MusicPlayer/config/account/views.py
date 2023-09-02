@@ -68,4 +68,4 @@ class UserProfileView(LoginRequiredMixin,View):
     def get(self, request,id):
         user=User.objects.get(id=id)
         playlist=PlayList.objects.all(owner=user)
-        return render(request,'account/profile.html', context={'playlist':playlist})
+        return render(request,'account/user_profile.html', context={'playlist':playlist})
