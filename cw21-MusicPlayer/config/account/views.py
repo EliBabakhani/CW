@@ -6,6 +6,8 @@ from django.views.generic import View
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from .models import User
+from music.models import Song,PlayList
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # • Authentication views (login, signup, logout).
 class UserLoginView(View):
@@ -60,3 +62,10 @@ class UserLogoutView(View):
             logout(request)
             messages.success(request, 'logged out successfully', 'success')
             return redirect('home:index')
+
+
+class UserProfileView(LoginRequiredMixin,View):    
+    def get(self, request,id):
+        user=User.objects.get(id=id)
+        playlist=PlayList.objects.all(owner=user)
+        return render(request,'account/profile.html', context={'playlist':playlist})
