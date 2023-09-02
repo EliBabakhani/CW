@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+    
+    {% for object in objects  %}
+        <div class="card" style="width: 18rem;">
+            <img src="media/" class="card-img-top" alt="...">
+            <div class="card-body">
+            <h5 class="card-title">{{object.title}}</h5>
+            <p class="card-text">{{object.genre}}</p>
+            <a href="#">{{object.artist}}</a>
+            <a href="{% url 'music:song' object.pk %}" class="btn btn-primary">more</a>
+            </div>
+        </div>
+        
+    {% endfor %}
+        
+    
+{% endblock %}
+    
