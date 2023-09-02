@@ -1,5 +1,5 @@
 from django.db import models
-from account.models import Artist,Users
+from account.models import Artist,User
 
 class Genre(models.Model):
     name=models.CharField(max_length=50)
@@ -22,7 +22,7 @@ class Song(models.Model):
 class PlayList(models.Model):
     title=models.CharField(max_length=100)
     description=models.TextField()
-    owner=models.ForeignKey(Users,on_delete=models.CASCADE)
+    owner=models.ForeignKey(User,on_delete=models.CASCADE)
     song=models.ManyToManyField(Song)
 
     def __str__(self) -> str:
