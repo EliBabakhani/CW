@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<h2>Welcome {{user.username}}</h2>
+
+{% for pl in playlist %}
+
+    <div class="card">
+        <h5 class="card-header">{{pl.title}}</h5>
+        <div class="card-body">
+        <h5 class="card-title">Special title treatment</h5>
+        <p class="card-text">{{pl.description}}.</p>
+        <a href="#" class="btn btn-primary">Edit ypur PlayList</a>
+        <a href="" class="btn btn-danger">Delete</a>
+        <a href="" class="btn btn-info">Listen</a>
+        </div>
+    </div>
+
+    
+{% endfor %}
+    
+    
+{% endblock %}
+    
