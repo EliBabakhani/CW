@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<h2>Home</h2>
+
+{% for song in songs  %}
+<div class="card" style="width: 18rem;">
+    <img src="media/" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{song.title}}</h5>
+      <p class="card-text">{{song.genre}}</p>
+      <a href="#">{{song.artist}}</a>
+      <a href="#" class="btn btn-primary">Download</a>
+    </div>
+  </div>
+    
+{% endfor %}
+    
+  
+{% endblock  %}
+  
