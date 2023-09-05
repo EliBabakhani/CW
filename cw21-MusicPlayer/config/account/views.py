@@ -1,13 +1,16 @@
 from typing import Any
 from django import http
+from django.forms.models import BaseModelForm
+from django.http import HttpResponse
 from django.shortcuts import render,redirect
-from .forms import UserLoginForm,UserRegisterForm
-from django.views.generic import View
+from .forms import UserLoginForm
+from django.views.generic import View,CreateView
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from .models import User
 from music.models import Song,PlayList
 from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 class UserLoginView(View):
     form_class=UserLoginForm
@@ -32,27 +35,27 @@ class UserLoginView(View):
             messages.error(request,'there is Error', 'danger')
             return render(request, 'account/usr')
         
-class UserRegisterView(View):
-    form_class=UserRegisterForm
+class UserRegisterView(CreateView):
+    model=User
+    fields=['username', 'password','image','account_type']
+    template_name='account/user_register.html'
+    success_url='login'
 
     def dispatch(self, request, *args: Any, **kwargs: Any) :
         if request.user.is_authenticated:
             return redirect('home:index')
-        return super().dispatch(request, *args, **kwargs)
+        print('hi')
+        return super().dispatch(request, *args, **kwargs) 
     
-    def get(self,request):
-        form=self.form_class
-        return render(request, 'account/user_register.html', context={'form':form})
     
-    def post(self, request):
-        form=self.form_class(request.POST)
-        if form.is_valid():
-            cd=form.cleaned_data
-            User.objects.create_user(username=cd['username'], password=cd['password'], image=cd['file'], account_type=cd['account_type'])
-            messages.success(request,'Registered successfully', 'success')
-            return redirect('home:index')
-        messages.error(request, 'Registered failed','danger')
-        return redirect('account:user_register')
+    def form_invalid(self, form: BaseModelForm) -> HttpResponse:
+        print(form.errors)
+        return super().form_invalid(form)
+    
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        user=form.save()
+        login(self.request,user)
+        return super().form_valid(form)
 
 
 class UserLogoutView(View):
