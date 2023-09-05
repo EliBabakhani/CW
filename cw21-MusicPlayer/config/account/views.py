@@ -9,7 +9,6 @@ from .models import User
 from music.models import Song,PlayList
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-# • Authentication views (login, signup, logout).
 class UserLoginView(View):
     form_class=UserLoginForm
     def dispatch(self, request, *args: Any, **kwargs: Any):
@@ -69,3 +68,6 @@ class UserProfileView(LoginRequiredMixin,View):
         user=User.objects.get(id=id)
         playlist=PlayList.objects.all(owner=user)
         return render(request,'account/user_profile.html', context={'playlist':playlist})
+    
+
+
