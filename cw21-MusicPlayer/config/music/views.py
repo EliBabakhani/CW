@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.shortcuts import render,redirect
 from django.views.generic import DetailView, ListView,View
 from .models import Song, PlayList
+from comment.models import Like,Comment
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import CreatePlaylistForm, AddtoPlaylistForm
 
@@ -19,7 +20,7 @@ class SongDetailView(DetailView):
     
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context= super().get_context_data(**kwargs)
-        playlists=PlayList.objects.all()
+        playlists=PlayList.objects.filter(owner=self.request.user.id)
         context['playlists']=playlists
         return context
 
@@ -56,7 +57,8 @@ class AddMusicView(LoginRequiredMixin,View):
             return redirect('music:song',song.id)
         return redirect('music:song',song.id)
         
-
+class LikeSongView(LoginRequiredMixin, View):
+    pass
 
 
 
