@@ -3,6 +3,7 @@
 
 {% block content %}
 <h2>Welcome {{user.username}}</h2>
+    <a href="{% url 'music:create_playlist' %}">Create a new Playlist</a>
 
 {% for pl in playlist %}
 
