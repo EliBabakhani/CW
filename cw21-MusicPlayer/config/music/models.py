@@ -11,8 +11,8 @@ class Song(models.Model):
     title=models.CharField(max_length=100)
     artist=models.ManyToManyField(Artist)
     upload_at=models.DateTimeField(auto_now=True)
-    cover_photo=models.ImageField()
-    audio_file=models.FileField(upload_to="uploads/%Y/%m/")
+    cover_photo=models.ImageField(upload_to='images/')
+    audio_file=models.FileField(upload_to="songs/")
     genre=models.ForeignKey(Genre,on_delete=models.CASCADE)
 
     def __str__(self) -> str:
