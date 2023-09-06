@@ -11,6 +11,7 @@
       <h5 class="card-title">{{song.title}}</h5>
       <p class="card-text">{{song.genre}}</p>
       <a href="#">{{song.artist}}</a>
+      <a href="{% url 'music:song' song.pk %}" class="btn btn-primary">more</a>
       <a href="#" class="btn btn-primary">Download</a>
     </div>
   </div>
