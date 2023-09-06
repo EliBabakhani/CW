@@ -2,12 +2,15 @@
 
 
 {% block content %}
-    <form action="" method="post">
-        {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" value="register">
+<form action="" method="post" enctype="multipart/form-data" class="col-md-6" novalidate>
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Register">
 
-    </form>
+</form>
+
+
     
 {% endblock  %}
+    
     
