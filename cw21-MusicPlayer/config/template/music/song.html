@@ -30,9 +30,55 @@
         
         <button type="submit" class="btn btn-primary">Add to Playlist</button>
     </form>
+    {% for cm in comment  %}
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+            <h5 class="card-title">{{cm.user}}</h5>
+            <p class="card-text">{{cm.body}}</p>
+            <p class="card-text">{{cm.craeted}}</p>            
+            </div>
+        </div>
+        
+    {% endfor %}
+
+    
+    <form id='commnetcreation' method="post">
+        {% csrf_token %}
+        
+        {{form.body}}
+        {{form.song}}
+        <input type="submit" value="Comment">
+    </form>
     {% endif %}
+
 
     </div>
 </div>
 
 {% endblock  %}
+
+{% block footer %}
+<script>
+    $('#commnetcreation').submit(function(e){
+        e.preventDefault();
+        alert('Hooo')
+
+        $.ajax({
+            type:'POST',
+            url:'{% url "music:comment" %}',
+            data: $(this).serialize(),
+
+            success: function(data){
+                alert(data)
+            },
+            error: function(data){
+                alert(JSON.parse(data.response)['error'])
+            }
+        });        
+
+    });
+
+</script>
+    
+{% endblock %}
+    
