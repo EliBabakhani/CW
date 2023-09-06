@@ -8,5 +8,6 @@ urlpatterns = [
     path('song/<int:pk>', views.SongDetailView.as_view(), name='song'),
     path('create_playlist', views.CreatePlylistView.as_view(),name='create_playlist'),
     path('add_to_play_list/', views.AddMusicView.as_view(), name='add_to_playlist'),
-    
+    path('comments/', views.CreateCommnetView.as_view(), name='comment'),
+
 ]
