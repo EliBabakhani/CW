@@ -1,5 +1,6 @@
 from django.db import models
 from account.models import Artist,User
+from django.urls import reverse
 
 class Genre(models.Model):
     name=models.CharField(max_length=50)
@@ -17,6 +18,8 @@ class Song(models.Model):
 
     def __str__(self) -> str:
         return self.title
+    def get_absolute_url(self):
+        return reverse('music:song', args=(self.id))
     
 
 class PlayList(models.Model):
