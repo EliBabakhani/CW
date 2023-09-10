@@ -13,10 +13,10 @@ class Artist(models.Model):
 
 class User(AbstractUser):
     ACCOUNT_CHOICES = (
-        ('Normal', 'NORMAL'),
-        ('VIP', 'VIP'),
+        ('N', 'NORMAL'),
+        ('V', 'VIP'),
     )
-    account_type = models.CharField(max_length=6, choices=ACCOUNT_CHOICES)
+    account_type = models.CharField(max_length=1, choices=ACCOUNT_CHOICES)
     image=models.ImageField(upload_to='media/images')
 
     def __str__(self) -> str:

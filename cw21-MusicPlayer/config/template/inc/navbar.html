@@ -1,34 +1,23 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="{% url 'home:index' %}">Home</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            
-            {% if request.user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'home:index' %}">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'music:create_playlist' %}">Create Playlist</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'account:user_logout' %}">Logout</a>
-                </li>
-                
-            {% else %}
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'account:user_login' %}">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'account:user_register' %}">Register</a>
-                </li>
-            {% endif %}
+<div class="wrap">
+<header>
+    <div class="container">
+    <h1><a href="#">Music Beats</a></h1>
+    <nav>
+        <ul>
+        <li class="m1"><a href="{% url 'home:index' %}" class="active"><span>home</span></a></li>
+        {% if request.user.is_authenticated %}
+
+        <li class="m2"><a href="{% url 'music:create_playlist' %}"><span>Create Playlist</span></a></li>
+        <li class="m3"><a href="{% url 'account:user_profile' request.user.id %}"><span>Profile</span></a></li>
+        <li class="m4"><a href="{% url 'account:user_logout' %}"><span>Logout</span></a></li>
+        {% else %}
+        <li class="m2"><a href="{% url 'account:user_register' %}"><span>Register</span></a></li>
+        <li class="m2"><a href="{% url 'account:user_login' %}"><span>Login</span></a></li>
+        {% endif %}
 
 
         </ul>
-      </div>
+    </nav>
     </div>
-  </nav>
+</header>
+

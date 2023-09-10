@@ -1,12 +1,29 @@
 {% extends 'base.html' %}
+{% load static %}
 
+{% block link %}
 
+<link rel="stylesheet" href="{% static 'css/taskstyle.css' %}">
+
+{% endblock %}
 {% block content %}
-<h2>Home</h2>
 
-{% for song in songs  %}
+<div class="flex-container" >
+  {% for song in songs %}
+    <div class="card">
+      <h5 class="card-title">{{song.title}}</h5>
+      <p class="card-text">{{song.set}}</p>
+      <a class="card-link" href="{% url 'music:song' song.pk %}">more...</a>
+    </div>
+  {% endfor %}  
+</div>
+
+
+
+<!-- 
 <div class="card" style="width: 18rem;">
-    <img src="media/" class="card-img-top" alt="...">
+  {% for song in songs  %}
+    <img src="{{song.image.url}}" class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">{{song.title}}</h5>
       <p class="card-text">{{song.genre}}</p>
@@ -14,9 +31,10 @@
       <a href="{% url 'music:song' song.pk %}" class="btn btn-primary">more</a>
       <a href="#" class="btn btn-primary">Download</a>
     </div>
-  </div>
+    {% endfor %}
+  </div> -->
     
-{% endfor %}
+
     
   
 {% endblock  %}

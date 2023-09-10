@@ -10,6 +10,32 @@ from django.contrib import messages
 from .models import User
 from music.models import Song,PlayList
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth import REDIRECT_FIELD_NAME
+from django.http import HttpResponse
+
+
+def set_token(request):
+    request.headers['TOKEN'] = 120
+    print(request.headers.get('TOKEN'))
+
+
+    
+
+class  AuthenticationDecorator:
+    def __init__(self, function,set_token_url='account:set'):
+        self.function=function
+        self.set_token_url=set_token_url
+
+    def __call__(self, *args: Any, **kwds: Any) -> Any:
+        request=args[0]
+        # print(request.headers)
+        if request.headers.get('TOKEN')==120:
+            return self.function(*args, **kwds)
+        return redirect (self.set_token_url)
+
+@AuthenticationDecorator
+def show(request):
+    return HttpResponse('Hi there')
 
 
 class UserLoginView(View):
@@ -30,6 +56,7 @@ class UserLoginView(View):
             user=authenticate(username=cd['username'], password=cd['password'])
             if user is not None:
                 login(request, user)
+                set_token(request)
                 messages.success(request,'Logged in successfully', 'success')
                 return redirect('home:index')
             messages.error(request,'there is Error', 'danger')
@@ -55,6 +82,7 @@ class UserRegisterView(CreateView):
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
         user=form.save()
         login(self.request,user)
+        set_token(request)
         return super().form_valid(form)
 
 

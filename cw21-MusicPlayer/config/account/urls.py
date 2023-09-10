@@ -8,4 +8,6 @@ urlpatterns = [
     path('register', views.UserRegisterView.as_view(), name='user_register'),
     path('logout', views.UserLogoutView.as_view(), name='user_logout'),
     path('profile/<int:id>', views.UserProfileView.as_view(), name='user_profile'),
+    path('show/', views.show, name='hi'),
+    path('set/', views.set_token,name='set'),
 ]

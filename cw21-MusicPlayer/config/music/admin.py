@@ -9,6 +9,8 @@ class SongAdmin(admin.ModelAdmin):
     search_fields=['artist','title']
     list_filter=['upload_at','artist']
 
+    
+
 
 
 @admin.register(PlayList)

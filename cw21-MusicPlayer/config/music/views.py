@@ -12,6 +12,9 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator 
 from django.http import JsonResponse
 
+
+
+
 class SongListView(ListView):
     model=Song
     template_name='music/all_songs.html'
@@ -91,26 +94,24 @@ class SongDetailView(DetailView):
 
 class CreateCommnetView(View):
     form_class=CreateCommentForm
-    
+
     def post(self, request):
         if request.user.is_authenticated:
-            print('is auth')
             form=self.form_class(request.POST)
             if form.is_valid():
-                print('valid')
                 comment=form.save(commit=False)
                 comment.user=request.user
                 comment.save()
                 data={'comment_body':comment.body,'commnet_user': comment.user.username, 'comment_created':comment.created}
                 response=JsonResponse(data)
                 return response
-            print('invalid')
             print(form.errors)
-        print('not auth')
         response= JsonResponse({'error':'you have to log in'})
         response.status_code=403
         return response
 
+class LikeSongView(View):
+    pass
 
 class CreatePlylistView(LoginRequiredMixin,View):
     form_class=CreatePlaylistForm
@@ -146,6 +147,5 @@ class AddMusicView(LoginRequiredMixin,View):
         
 class LikeSongView(LoginRequiredMixin, View):
     pass
-
 
 
