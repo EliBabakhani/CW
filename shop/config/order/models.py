@@ -13,7 +13,7 @@ class Order( models.Model):
 class OredrItem(models.Model):
     order=models.ForeignKey(Order,on_delete=models.CASCADE)
     product=models.ForeignKey(Product, on_delete=models.CASCADE)
-    quantity=models.CharField(max_length=10)
+    quantity=models.IntegerField()
     unit_price=models.DecimalField(decimal_places=2, max_digits=5)
 
     def __str__(self) -> str:
