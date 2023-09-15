@@ -14,3 +14,7 @@ class User(AbstractBaseUser):
     last_name=models.CharField(max_length=100)
     password=models.CharField(max_length=50)
     address=models.ForeignKey(Address, on_delete=models.CASCADE)
+
+    is_active = models.BooleanField(default=True)
+    is_superuser=models.BooleanField(default=False)
+    is_staff=models.BooleanField(default=False)
