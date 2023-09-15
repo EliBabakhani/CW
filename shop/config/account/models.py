@@ -2,8 +2,11 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
 
 
-class Address:
+class Address(models.Model):
     address=models.CharField(max_length=200)
+
+    def __str__(self) -> str:
+        return self.address
 
 
 class User(AbstractBaseUser):
@@ -18,3 +21,6 @@ class User(AbstractBaseUser):
     is_active = models.BooleanField(default=True)
     is_superuser=models.BooleanField(default=False)
     is_staff=models.BooleanField(default=False)
+
+    def __str__(self) -> str:
+        return self.username
