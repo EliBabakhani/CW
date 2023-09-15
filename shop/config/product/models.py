@@ -11,3 +11,13 @@ class Product(models.Model):
 
     def __str__(self) -> str:
         return self.name
+    
+
+class Category(models.Model):
+    title=models.CharField(max_length=50)
+    description=models.CharField(max_length=300)
+    image=models.ImageField(upload_to='static')
+
+
+    def __str__(self) -> str:
+        return self.title
