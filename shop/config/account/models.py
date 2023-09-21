@@ -23,5 +23,8 @@ class User(AbstractBaseUser):
     USERNAME_FIELD = 'phone'
     REQUIRED_FIELDS = []
 
+    def get_access_token(self):
+        return JwtHelper.generate_jwt_token(self.id,settings.SECRET_KEY,60)
+        
     def __str__(self) -> str:
         return self.username
