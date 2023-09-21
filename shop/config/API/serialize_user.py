@@ -15,3 +15,18 @@ class SerializerRegisterUser(serializers.ModelSerializer):
             instance.save()
             return instance
 
+
+class SerializerLogin(serializers.Serializer):
+
+    phone = serializers.CharField(required=True, allow_null=False)
+
+
+    def validate(self, data):
+        phone = data.get('phone')
+
+        if not User.objects.filter(phone=phone).exists():
+            raise serializers.ValidationError
+
+
+
+        return data
