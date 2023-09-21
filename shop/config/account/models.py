@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
-
+import jwt
+from .utils import JwtHelper
+from config import settings
 
 class Address(models.Model):
     address=models.CharField(max_length=200)
@@ -23,8 +25,12 @@ class User(AbstractBaseUser):
     USERNAME_FIELD = 'phone'
     REQUIRED_FIELDS = []
 
+
     def get_access_token(self):
         return JwtHelper.generate_jwt_token(self.id,settings.SECRET_KEY,60)
         
+    def get_refresh_token(self):
+        return JwtHelper.generate_jwt_token(self.id,settings.SECRET_KEY,480)
+
     def __str__(self) -> str:
         return self.username
