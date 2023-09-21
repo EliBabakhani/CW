@@ -1,7 +1,10 @@
 from django.shortcuts import render
-from API.serialize_user import SerializerRegisterUser
+from api.serialize_user import SerializerRegisterUser, SerializerLogin, LoginOTPSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from .models import User
+from .auth import JwtAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 class RegisterView(APIView):
 
@@ -32,3 +35,14 @@ class VerifyOTP(APIView):
             return Response(data={'message':"success", "AT":access_token, "RT":refresh_token})
 
 
+
+class LoginRequiredView(APIView):
+    authentication_classes = [JwtAuthentication]
+    permission_classes=[IsAuthenticated]
+
+    def get(self, request):
+        return Response({'message':"success","phone":request.user.phone})
+                
+
+
+                
